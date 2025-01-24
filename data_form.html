@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Diri</title>
+</head>
+<body>
+    <h1>Pengisian Data Diri</h1>
+    <form id="dataForm">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" required>
+        <label for="age">Usia:</label>
+        <input type="number" id="age" required>
+        <label for="gender">Jenis Kelamin:</label>
+        <select id="gender">
+            <option value="male">Laki-laki</option>
+            <option value="female">Perempuan</option>
+        </select>
+        <button type="submit">Selanjutnya</button>
+    </form>
+
+    <script>
+        document.getElementById('dataForm').onsubmit = function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const gender = document.getElementById('gender').value;
+            sessionStorage.setItem('userData', JSON.stringify({ name, age, gender }));
+            window.location.href = 'instructions.html';
+        };
+    </script>
+</body>
+</html>
