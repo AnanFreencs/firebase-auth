@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Deteksi</title>
+</head>
+<body>
+    <h1>Hasil Deteksi Diabetes</h1>
+    <div id="userData"></div>
+    <div id="sensorData"></div>
+    <div id="result"></div>
+    <button id="detectDiabetes">Deteksi Diabetes</button>
+
+    <script>
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
+        const sensorData = JSON.parse(sessionStorage.getItem('sensorData'));
+
+        document.getElementById('userData').innerHTML = `
+            <h2>Data Pengguna</h2>
+            <p>Nama: ${userData.name}</p>
+            <p>Usia: ${userData.age}</p>
+            <p>Jenis Kelamin: ${userData.gender}</p>
+        `;
+
+        document.getElementById('sensorData').innerHTML = `
+            <h2>Data Sensor</h2>
+            <p>Kadar Glukosa: ${sensorData.glucose} mg/dL</p>
+            <p>Detak Jantung: ${sensorData.heartRate} bpm</p>
+            <p>SpO2: ${sensorData.spo2} %</p>
+        `;
+
+        document.getElementById('detectDiabetes').onclick = function() {
+            // Simulasi deteksi diabetes
+            const glucose = sensorData.glucose;
+            let diagnosis = 'Negatif Diabetes';
+            let advice = 'Tetap jaga pola makan dan lakukan pemeriksaan rutin.';
+
+            if (glucose > 140) {
+                diagnosis = 'Positif Diabetes';
+                advice = 'Segera konsultasikan dengan dokter untuk penanganan lebih lanjut.';
+            }
+
+            document.getElementById('result').innerHTML = `
+                <h2>Diagnosis</h2>
+                <p>${diagnosis}</p>
+                <p>Saran: ${advice}</p>
+            `;
+        };
+    </script>
+</body>
+</html>
