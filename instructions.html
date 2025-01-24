@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruksi</title>
+</head>
+<body>
+    <h1>Halo!</h1>
+    <p>Silakan letakkan jari Anda di sensor MAX30102.</p>
+    <button id="startSensor">Mulai Pengukuran</button>
+
+    <script>
+        document.getElementById('startSensor').onclick = function() {
+            // Simulasi pengambilan data dari sensor
+            const sensorData = {
+                glucose: (Math.random() * 200).toFixed(2), // Simulasi data glukosa
+                heartRate: Math.floor(Math.random() * 100) + 60, // Simulasi detak jantung
+                spo2: Math.floor(Math.random() * 10) + 90 // Simulasi SpO2
+            };
+            sessionStorage.setItem('sensorData', JSON.stringify(sensorData));
+            window.location.href = 'results.html';
+        };
+    </script>
+</body>
+</html>
